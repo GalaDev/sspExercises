@@ -1,24 +1,27 @@
 const l = console.log;
 
-const each = (coll, f) => {
-  if(Array.isArray(coll)){
-    for(let i = 0; i < coll.length; i++){
+function each(coll, f) {
+  if (Array.isArray(coll)) {
+    for (var i = 0; i < coll.length; i++) {
       f(coll[i], i);
     }
   } else {
-    for(let key in coll){
+    for (var key in coll) {
       f(coll[key], key);
     }
   }
-};
+}
 
-const map = (array, f) => {
-  const acc = [];
-  each(array, (el, i) => {
-    acc.push(f(el, i));
+function map(coll, f) {
+  var acc = [];
+  if (!Array.isArray(coll)) {
+    acc = {};
+  }
+  each(coll, function(element, key) {
+    acc[key] = f(element, key);
   });
   return acc;
-};
+}
 
 var people = [
   { name: { first: "Alyssa", middle: "P.", last: "Hacker" }, age: 26 },
@@ -103,7 +106,62 @@ const reverse = (str) => {
   }).join(' ');
 };
 
-l(reverse('Hello world how are you'))
+// l(reverse('Hello world how are you'));
+
+const pluck = (people, attribute) => {
+  return map(people, person => {
+    return person[attribute];
+  });
+};
+
+// l(pluck(people, "age")); // => [26, 34, 40, 45, 21]
+
+
+const map2 = (arr1, arr2, f) => {
+  const acc = [];
+  
+  arr1.forEach((el1, i) => {
+    arr2.forEach((el2, j) => {
+      if(i === j){
+        acc.push(f(el1, el2))
+      }
+    });
+  });
+
+  return acc;
+}
+
+// l(map2([1, 2, 3], [4, 5, 6], function(a, b) {
+//   return a * b;
+// }));
+// => [4, 10, 18]
+
+
+const incrementValues = (obj) => {
+  return map(obj, (val, key) => {
+    return Number.isInteger(val) ? val + 1 : val
+  });
+};
+
+// l(incrementValues({a: 1, b: 2, c: 'd'}));
+
+const uppercase = (obj) => {
+  return map(obj, (val, key) => {
+    return typeof val === 'string' ? val.toUpperCase() : val;
+  });
+};
+
+// l(uppercase({a: 'hello', b: 'world', c: 10}));
+
+const countNestedKeys = (obj) => {
+  return map(obj, (val, key) => {
+    return obj[key] = Object.keys(val).length;
+  });
+};
+
+// l(countNestedKeys({ a: { b: 1, c: 7 }, f: { h: 22, g: 12, i: 24 } }));
+
+
 
 
 
