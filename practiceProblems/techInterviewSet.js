@@ -219,30 +219,55 @@
 //retArr.push([arr[i], arr[j]])
 //return retArr;
 
-const findPairForSum = (arr, n) => {
-  for (let i = 0; i < arr.length; i++) {
-    for (let j = 0; j < arr.length; j++) {
-      if (j > i) {
-        if (arr[i] + arr[j] === n) {
-          return [arr[i], arr[j]];
-        }
-      }
-    }
-  }
-};
+// const findPairForSum = (arr, n) => {
+//   for (let i = 0; i < arr.length; i++) {
+//     for (let j = 0; j < arr.length; j++) {
+//       if (j > i) {
+//         if (arr[i] + arr[j] === n) {
+//           return [arr[i], arr[j]];
+//         }
+//       }
+//     }
+//   }
+// };
 
-//Test Suite
-const assertArraysEqual = (actual, expected, testName) => {
-  const actArr = actual.join("");
-  const expArr = expected.join("");
+// //Test Suite
+// const assertArraysEqual = (actual, expected, testName) => {
+//   const actArr = actual.join("");
+//   const expArr = expected.join("");
 
-  if (actArr === expArr) {
-    console.log("passed");
-  } else {
-    console.log(`FAILED [${testName}] Expected ${expected}, got ${actual}`);
-  }
-};
+//   if (actArr === expArr) {
+//     console.log("passed");
+//   } else {
+//     console.log(`FAILED [${testName}] Expected ${expected}, got ${actual}`);
+//   }
+// };
 
-var pair = findPairForSum([3, 34, 4, 12, 5, 2], 9);
+// var pair = findPairForSum([3, 34, 4, 12, 5, 2], 9);
 
-assertArraysEqual(pair, [4, 5], "it should return the target sum");
+// assertArraysEqual(pair, [4, 5], "it should return the target sum");
+
+//======================================
+
+// Is one string a rotated version of another?
+
+// For example:
+// String 1: 'hello world'
+// String 2: 'orldhello w'
+
+// Extra hint: (click the drop down to ROT7 to see hint)
+// Ol eua juahrk znk yzxotm, eua'rr hk zu zxobogrre lotj gtuznkx yzxotm otyojk oz ayotm xkmargx Yzxotm skznujy.
+
+// Juahrkj yzxotm: 'nkrru cuxrjnkrru cuxrj'
+// Ykgxin c/ot oz: '       uxrjnkrru c    '
+
+//rotate str1 until it matches str2 
+ //if match return true else false
+
+//  const isRotMatch = (str1, str2) => {
+//    if(str1.length !== str2.length) return false;
+//    let doubleStr1 = str1 + str1;
+//    return doubleStr1.indexOf(str2) !== -1;
+//  }
+
+//  console.log(isRotMatch('hello world', 'orldhello w'));
