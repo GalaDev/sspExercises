@@ -138,5 +138,106 @@ const containE = (arr) => {
   }, true);
 };
 
-l(containE('hello eye o get let set'.split(' ')));
+// l(containE('hello eye o get let set'.split(' ')));
+
+const every = (arr, f) => {
+  const acc = [];
+
+  for(let i = 0; i < arr.length; i++){
+    if(!f(arr[i])){
+      return false;
+    }
+  }
+
+  return true;
+};
+
+function everyNumberEven1(numbers) {
+  return every(numbers, function(number) {
+    return number % 2 === 0;
+  });
+}
+
+// l(everyNumberEven1([2,2,4,4,6,6]));
+
+const join = (arr, str) => {
+  return reduce(arr, (acc, el) => {
+    return acc + el + str
+  }, '')
+};
+
+// l(join(["hello", "there", "how", "are", "you"], ":"));
+
+function joinWith(onto, next, separator) {
+  return onto + separator + next
+}
+// l(joinWith("the quick", "brown", " ")); // => "the quick brown"
+// l(joinWith("one:two", "three", ":")); // => "one:two:three"
+
+
+const map = (array, f) => {
+  const mappedArr = [];
+  reduce(array, (acc, el) => {
+     mappedArr.push(f(el));
+  }, 0);
+  return mappedArr
+};
+
+// l(map([1,2,3,4], (el) => {
+//   return el * 2;
+// }));
+
+function countWords(s) {
+  var acc = {};
+  var words = s.split(" ");
+  words.reduce((acum, word) => {
+    if(acc[word] === undefined){
+      acc[word] = 1;
+    } else {
+      acc[word]++
+    }
+  }, 0);
+
+  return acc;
+}
+
+// l(countWords('hello there hello how are you you there'))
+
+const countChars = (s) => {
+  let chars = s.split('');
+  let acc = {};
+
+  chars.reduce((acum, char) => {
+    if(acc[char] === undefined) {
+      acc[char] = 1;
+    } else {
+      acc[char]++
+    }
+  }, 0);
+
+  return acc;
+}
+
+// l(countChars('narendra'));
+
+
+function getElementsThatEqual10AtProperty(obj, key) {
+  // your code here
+  return obj[key].filter((el) => {
+      return el === 10;
+  });
+}
+
+var obj = {
+  key: [1000, 10, 50, 10]
+};
+
+function getElementsThatEqual10AtProperty(obj, key) {
+  // your code here
+  return obj['key'].filter(el => el === key);
+}
+
+l(getElementsThatEqual10AtProperty(obj, 10))
+
+
 
